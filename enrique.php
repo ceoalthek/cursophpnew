@@ -20,4 +20,11 @@ function muestra_argumentos(){
 
 numero_argumentos(1,2,4);
 muestra_argumentos(1,23,54);
+
+/*
+- Escriba un formulario que solicite nombres y los almacene en una sesión hasta que el usuario cierre la sesión, es necesario subir su identificación oficial.
+- El formulario contiene un campo para escribir un nombre (una o varias palabras).
+- El formulario muestra los nombres que se han escrito anteriormente.
+- La página contiene un enlace para cerrar la sesión.
+*/
 ?>
