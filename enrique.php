@@ -5,7 +5,6 @@ Funciones:
 	func_get_arg : devuelve el valor del indice que se le indique
 	func_get_args :  devuelve un array con todos los argumentos
  */
-
 function numero_argumentos(){
 	$numargs  = func_num_args();
 	echo "numero de argumento: $numargs <br>";
