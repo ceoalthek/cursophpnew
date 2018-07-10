@@ -38,7 +38,7 @@ if(isset($_SESSION['datos'])){
 		<br>
 		<br>
 		<br>
-		<?php
+		<?php 
 		if(is_array($_FILES)){
 			if(isset($_FILES['archivo'])){
 				
