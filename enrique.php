@@ -4,7 +4,6 @@ Funciones:
 	func_num_args : Numero total de argumentos
 	func_get_arg : devuelve el valor del indice que se le indique
 	func_get_args :  devuelve un array con todos los argumentos
-
  */
 
 function numero_argumentos(){
