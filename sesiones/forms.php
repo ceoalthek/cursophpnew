@@ -1,3 +1,5 @@
+
+
 <form action="" method="POST">
     <input type="text" name="nombre[nombres]">
     <input type="text" name="nombre[apellidos]">
