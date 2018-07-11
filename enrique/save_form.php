@@ -19,11 +19,33 @@ function guarda_nombre(){
 	);
 	setcookie("registro", serialize($array));
 
+
+	if(is_array($_FILES)){
+		if(isset($_FILES['archivo'])){
+			
+			$target_file = "imagen.png";
+			echo "carpeta temporal: " . $_FILES["archivo"]["tmp_name"] . "<br>";
+			// echo "Nombre archivo: " . $_FILES["archivo"]["name"] . "<br>";
+			// echo __DIR__;
+			if(file_exists($target_file)){
+				unlink($target_file);
+			}
+
+			if (move_uploaded_file($_FILES["archivo"]["tmp_name"], $_FILES["archivo"]["name"] )){
+				echo "SUBIO";
+				$_SESSION['imagen'] = 1;
+			}else {
+			    echo "No subio";
+			}
+		}
+
+	}
+
 	header('Location: datos_cookie.php');
 }
 
 function conecta(){
-	$conexion = mysql_connect("192.168.33.22", "root", "12345678");
+	$conexion = mysql_connect("localhost", "root", "12345678");
 	$bd = mysql_select_db("test", $conexion);
 
 
