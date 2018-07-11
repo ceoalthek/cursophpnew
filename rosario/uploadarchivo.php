@@ -24,6 +24,8 @@ $datos_cookie = array(
 setcookie("cookie_img", serialize($datos_cookie),time()+3600 );
 //setcookie("cookie_img", $datos_cookie, time()+3600);  /* expira en una hora */
 // setcookie("cookie_img", $datos_cookie, time()+3600, "/~rasmus/", "example.com", 1);
+// 
+// 
 $cookie_get = unserialize($_COOKIE['cookie_img']);
 echo "<pre>" . print_r($cookie_get,true) . "</pre>";
 
@@ -33,7 +35,7 @@ echo "\n";
 
 
  
-print_r($_FILES);
+echo "<pre>" .print_r($_FILES). "</pre>";
 $tmp_name = $_FILES['archivo']['tmp_name'];
 //$tmp_name= $tmp_name[0];
 print_r($tmp_name);
@@ -46,7 +48,7 @@ print_r($_FILES);
 // boton que diga borrar cookie
 // $array = ;
  
-$direccion = '/var/www/html/cursophpnew/rosario/';
+$direccion = 'C:\xampp\htdocs\cursophp\\';
 //$direccion = "http://localhost/cursophp/";
 
 $imagen= $direccion . basename($_FILES['archivo']['name']);
@@ -74,18 +76,49 @@ if(!is_writable($direccion)){
   	
 
     function guardar_datos(){
-	 
-	$conexion = mysql_connect("127.0.0.1", "root", "12345678");
-	$bd = mysql_select_db("test", $conexion);
-	
-	$sql = "INSERT INTO imagen (id_imagen, nombre, apellido) values (null, '".$_POST['nombre']."', '".$_POST['apellido']."')";
-	mysql_query($sql);  
+ 
+	//$conexion = mysql_connect("localhost", "root", "");
+	// $bd = mysql_database("test", $conexion);
 
-	echo "<div><img src='http://env.local.com/cursophpnew/rosario/". basename($_FILES['archivo']['name']) ."' /></div>";
+	 $mysqli = new mysqli('127.0.0.1', 'root', '', 'test');
+	 $mysqli->set_charset("utf8");
+
+/*
+$res = $mysqli->query("SELECT * FROM personas");
+
+while($f = $res->fetch_object()){
+    echo $f->nombre.' <br/>';
 }
+*/
+	if(isset($_POST['nombre'])){
+		$nombre = $_POST['nombre'];
+		if($nombre !=""){
+			$sql = "INSERT INTO imagen (id_imagen, nombre, apellido, imagen_name) values (null, '".$_POST['nombre']."', '".$_POST['apellido']."','".$_FILES['archivo']['name']."')";
+			$res = $mysqli->query($sql);	
+			//mysql_query($sql);  
+		}
+	}
+ 
+	$sql = "SELECT * FROM imagen";	
+
+	$resultado = $mysqli->query($sql);
+	echo "<table border='1'><tr><td> NOMBRE</td> <td> APELLIDO</td> <td> IMAGEN SUBIDA</td></tr>";
+	while($f = $resultado->fetch_object()){
+			echo "<tr><td>";
+		echo $f->nombre.' </td> <td>' .  $f->apellido .' </td> <td>' .  $f->imagen_name ;
+		echo "</td></tr>";
+	}
+	echo "</table>";
+ 
+ 
+ 
+}
+
+echo "<div><img src='http://localhost/cursophp/". basename($_FILES['archivo']['name']) ."' /></div>";
+
  	echo "<br>";
 	echo "\n";
-    echo "<button id='terminar' ><a href='http://env.local.com/cursophpnew/rosario/close.php'>Cerrar la sesion </a></button> "; 
+    echo "<button id='terminar' ><a href='http://localhost/cursophp/llenafile.php'> Llenar ARchivo TXT</a></button> "; 
 
 	 
  

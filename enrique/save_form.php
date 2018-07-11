@@ -46,7 +46,5 @@ function guarda_nombre(){
 function conecta(){
 	$conexion = mysql_connect("127.0.0.1", "root", "12345678");
 	$bd = mysql_select_db("test", $conexion);
-
-
 }
 ?>
