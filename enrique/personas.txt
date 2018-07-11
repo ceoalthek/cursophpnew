@@ -1,0 +1,6 @@
+enrique	acevedo	acevedo	imagen1.png
+Simon	Hernandez	Hernandez	imagen2.png
+Eniek	Leon	Leon	
+Rosario	Rocha	Rocha	
+Irvign	Rodriguez	Rodriguez	
+Oscar			
