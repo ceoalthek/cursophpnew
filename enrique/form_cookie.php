@@ -5,7 +5,7 @@
 	<title>Formulario de nombre</title>
 </head>
 <body>
-	<form action="save_form.php" method="post">
+	<form action="save_form.php" method="post" enctype="multipart/form-data">
 		<label>Nombre</label>
 		<input type="text" name="nombre[]">
 		<br>
@@ -14,6 +14,9 @@
 		<br>
 		<label>Ap. Materno</label>
 		<input type="text" name="materno[]">
+		<br>
+		<label>Sube una imagen</label>
+		<input type="file" name="archivo">
 		<br>
 		<input type="submit" value="Enviar">
 	</form>
