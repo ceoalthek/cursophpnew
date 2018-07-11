@@ -21,4 +21,12 @@ echo "<hr>";
 echo "Valor COOKIE";
 echo "<pre>" . print_r($_COOKIE,true) . "</pre>";
 
+print_r( unserialize($_COOKIE['registro']));
+
+$dat = $_COOKIE['registro'];
+$data=unserialize($dat);
+foreach($data as $key => $vl)
+{ 
+   echo $key.' : '.$vl.'<br>';
+}
 ?>
