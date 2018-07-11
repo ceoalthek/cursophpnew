@@ -46,7 +46,7 @@ print_r($_FILES);
 // boton que diga borrar cookie
 // $array = ;
  
-$direccion = 'C:\xampp\htdocs\cursophp\\';
+$direccion = '/var/www/html/cursophpnew/rosario/';
 //$direccion = "http://localhost/cursophp/";
 
 $imagen= $direccion . basename($_FILES['archivo']['name']);
@@ -75,17 +75,17 @@ if(!is_writable($direccion)){
 
     function guardar_datos(){
 	 
-	$conexion = mysql_connect("127.0.0.1", "root", "");
-	$bd = mysql_select_db("cursophp", $conexion);
+	$conexion = mysql_connect("127.0.0.1", "root", "12345678");
+	$bd = mysql_select_db("test", $conexion);
 	
 	$sql = "INSERT INTO imagen (id_imagen, nombre, apellido) values (null, '".$_POST['nombre']."', '".$_POST['apellido']."')";
 	mysql_query($sql);  
 
-	echo "<div><img src='http://localhost/cursophp/". basename($_FILES['archivo']['name']) ."' /></div>";
+	echo "<div><img src='http://env.local.com/cursophpnew/rosario/". basename($_FILES['archivo']['name']) ."' /></div>";
 }
  	echo "<br>";
 	echo "\n";
-    echo "<button id='terminar' ><a href='http://localhost/cursophp/close.php'>Cerrar la sesion </a></button> "; 
+    echo "<button id='terminar' ><a href='http://env.local.com/cursophpnew/rosario/close.php'>Cerrar la sesion </a></button> "; 
 
 	 
  
