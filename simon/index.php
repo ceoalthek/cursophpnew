@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php 
+	session_start(); 
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,12 +39,23 @@
 		<button type="submit">
 			Guardar imagen y salir
 		</button>
-
 		<?php }else{ ?>
 		<button type="submit">
 			Enviar
 		</button>
 		<?php } ?>
+
+		<br>
+		<?php if(!isset($_COOKIE['ejercicio'])){ ?>
+		<a type="button" href="save_post.php?valor=1">
+			recuperar informacion guardada y cear kokie
+		</a>
+		<?php } else{ ?>
+		<a type="button" href="save_post.php?valor=2">
+			eliminar kokie
+		</a>
+		<?php } ?>
+
 	</form>
 	<br>
 	<br>
@@ -74,6 +88,25 @@
 			</tr>
 		</tbody>
 	</table>
-	<?php } ?>
+	<br>
+	<br>
+	<?php } 
+	if(isset($_COOKIE['ejercicio'])){
+		$datos = unserialize($_COOKIE['ejercicio']); 
+		echo "Esta es la informacio de la cokie <br><br>";
+
+		print_r($datos);
+		echo "<br>";
+	}
+
+
+	?>
 </body>
 </html>
+
+
+<?php 
+
+
+
+?>
