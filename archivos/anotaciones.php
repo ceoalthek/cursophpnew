@@ -54,7 +54,7 @@ Las funciones fread y fwrite leen y escriben, respectivamente, en un archivo en 
 
 <?php
 
-$path = "/var/www/html/cursophpnew/archivo.txt";
+$path = "/var/www/html/cursophpnew/archivo";
 if (!file_exists($path))
     exit("File not found");
 $file = fopen($path, "r");
@@ -101,7 +101,7 @@ La función fgetcsv obtiene una línea del puntero a un archivo y la examina par
 
 <?php
 
-$path = "/var/www/html/cursophpnew/archivo.txt";
+$path = "/var/www/html/cursophpnew/archivo.csv";
 if (!file_exists($path))
     exit("Archivo no encontrado");
 $file = fopen($path, "r");
