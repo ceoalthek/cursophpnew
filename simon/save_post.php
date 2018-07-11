@@ -63,8 +63,8 @@ function recupera_datos(){
 }
 
 function cokie(){
+	setcookie("ejercicio",serialize(array()), time()-3600);
 	unset($_COOKIE["ejercicio"]);
-	setcookie("ejercicio","", time()-3600);
 }
 ?>
 
