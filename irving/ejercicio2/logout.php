@@ -3,11 +3,11 @@
 	function logout(){
 		setcookie("user", "", time() - 3600);
 		setcookie("pass", "", time() - 3600);
-		echo $_COOKIE["user"] . " " . $_COOKIE["pass"];
-		header("Location: http://" . $_SERVER['HTTP_HOST'] . "/ejercicio2");
+		header("Location: http://env.local.com/cursophpnew/irving/ejercicio2/login.php");
 	}
 	
 	logout();
+	//echo $_COOKIE["user"] . " " . $_COOKIE["pass"];
 ?>
 <html>
 <head>

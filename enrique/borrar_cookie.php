@@ -1,8 +1,8 @@
 <?php
 function borrar_cookie(){
-	setcookie("registro", serialize(array()));
+	setcookie("registro", serialize(array()), time()-3600);
 
-	unset ($_COOKIE ["registro"]);
+	//unset ($_COOKIE ["registro"]);
 }
 
 borrar_cookie();

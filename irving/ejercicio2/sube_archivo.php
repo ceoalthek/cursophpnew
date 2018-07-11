@@ -23,9 +23,9 @@
 
 	function sube_datos($fichero){
 
-		$servidor = "localhost";
+		$servidor = "127.0.0.1";
 		$usuario = "root";
-		$contrasena = "";
+		$contrasena = "12345678";
 		$BD = "ejercicio2";
 		
 		$conexion = new mysqli($servidor, $usuario, $contrasena, $BD);

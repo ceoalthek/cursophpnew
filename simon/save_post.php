@@ -5,7 +5,7 @@
 		if($_GET['valor'] == 2) cokie();
 		header('Location: /cursophpnew/simon/index.php');
 	}
-	$con = new mysqli('localhost','root','12345678', 'prueba');
+	$con = new mysqli('localhost','root','12345678', 'test');
 	if($con->connect_error){
 		// die("Fallo la conexion: ",$con->connect_error);
 		echo "fallo conexion";
@@ -14,7 +14,7 @@
 		$nombre = $_POST['nombre'][0];
 		$paterno = $_POST['paterno'][0];
 		$materno = $_POST['materno'][0];
-		$query = "INSERT INTO nombre (nombre,paterno,materno) values('$nombre','$paterno','$materno')";	
+		$query = "INSERT INTO registros (nombre,paterno,materno) values('$nombre','$paterno','$materno')";	
 		if($con->query($query) === TRUE){
 			echo 'se guardo la info';
 		}else{
@@ -48,23 +48,23 @@
 
 
 function recupera_datos(){
-	$con = new mysqli('localhost','root','12345678', 'prueba');
+	$con = new mysqli('localhost','root','12345678', 'test');
 	if($con->connect_error){
 		// die("Fallo la conexion: ",$con->connect_error);
 		echo "fallo conexion";
 	}	
-	$query = "SELECT * FROM nombre limit 1";	
+	$query = "SELECT * FROM registros limit 1";	
 	$result = $con->query($query);
 	if($result->num_rows > 0){
 		$data = $result->fetch_assoc();
 		$cokie = array('nombre'=>$data['nombre'],'paterno'=>$data['paterno'], 'materno'=>$data['materno']);
-		setcookie("ejercicio", serialize($cokie), time()+3600);
+		setcookie("ejercicio", serialize($cokie), (time()+3600)*24*30);
 	}
 }
 
 function cokie(){
-	setcookie("ejercicio",serialize(array()), time()-3600);
-	unset($_COOKIE["ejercicio"]);
+	setcookie("ejercicio",'');
+	//unset($_COOKIE["ejercicio"]);
 }
 ?>
 
