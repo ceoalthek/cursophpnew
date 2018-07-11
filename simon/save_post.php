@@ -63,15 +63,8 @@ function recupera_datos(){
 }
 
 function cokie(){
-	setcookie("ejercicio",'');
-	//unset($_COOKIE["ejercicio"]);
+	setcookie("ejercicio","", time() - 3600);
 }
 ?>
 
-
-<!-- por medio de kukies, 
-
-formulario guardar en base de datos, 
-recuperar la informacion y mostrarla en la kokie
-poner un boton de borra kokie. -->
 
