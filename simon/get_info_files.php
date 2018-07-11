@@ -14,7 +14,7 @@
 
 			$file = fopen($dir, "w");
 			while($data = $result->fetch_assoc()) {
-		       fwrite($file, $data['nombre'] . "\t" .$data['paterno']. "\t" .$data['materno']."\t" . "\n");
+		       fwrite($file, $data['nombre'] . "\t" .$data['paterno']. "\t" .$data['materno']."\t" . $data['url'] . "\t"."\n");
 		    }
 			fclose($file);
 		}
@@ -27,11 +27,11 @@
 		echo "<html><body><table border=1>";
 		echo "<tr><th>Nombre</th><th>Paterno</th><th>Materno</th></tr>";
 		$cokie = array();
-		while ($data = fscanf($file, "%s\t%s\t%s\t\n")) {
-		    list ($nombre, $paterno, $materno) = $data;
+		while ($data = fscanf($file, "%s\t%s\t%s\t%s\t\n")) {
+		    list ($nombre, $paterno, $materno, $url) = $data;
 		    echo "<tr><td>".$nombre."</td><td>".$paterno."</td><td>".
 		         $materno."</td></tr>";
-		         $cokie[] = $nombre . ' ' . $paterno . ' ' . $materno; 
+		         $cokie[] = $nombre . ' ' . $paterno . ' ' . $materno . ' ' . $url; 
 		}
 		echo "</table></body></html>";
 		fclose($file);
@@ -42,5 +42,5 @@
 
 	if(isset($_GET['valor'])) leer_file();
 	recupera_datos();
-
+header('Location: /cursophpnew/simon/files.php');
 ?>
