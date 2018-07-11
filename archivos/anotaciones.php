@@ -1,7 +1,7 @@
 Manejo de Archivos
 ==================
 
-La función fopen(path,mode) permite abrir un archivo local o mediante un URL. El path del archivo debe incluir la ruta completa al mismo. El mode puede ser r - lectura,w - escritura,a - agregar, o x - escritura exclusiva. Se puede agregar un + al modo y si el archivo no existe, se intentará crear. La función fclose(file) cierra un puntero a un archivo abierto.
+La función fopen(path,mode) permite abrir un archivo local o mediante un URL. El path del archivo debe incluir la ruta completa al mismo. El mode puede ser r - lectura,w - escritura,a - agregar, ox - escritura exclusiva. Se puede agregar un + al modo y si el archivo no existe, se intentará crear. La función fclose(file) cierra un puntero a un archivo abierto.
 
 La función feof(file) comprueba si el puntero a un archivo se encuentra al final del archivo. La función fgets(file) obtiene una línea desde el puntero a un archivo. La función file_exists(file) comprueba si existe un archivo o directorio.
 
@@ -71,9 +71,6 @@ fclose($file);
 
 ?>
 
-El archivo de datos para el ejemplo anterior podría ser el siguiente. Note que este es un archivo de registros de tamaño fijo.
-
-
 Archivo de Texto
 ----------------
 
@@ -106,7 +103,7 @@ La función fgetcsv obtiene una línea del puntero a un archivo y la examina par
 
 $path = "/var/www/html/cursophpnew/archivo.txt";
 if (!file_exists($path))
-    exit("File not found");
+    exit("Archivo no encontrado");
 $file = fopen($path, "r");
 echo "<html><body><table border=1>";
 echo "<tr><th>Pais</th><th>Código de Área</th><th>Info Primaria</th><th>Info Secundaria</th></tr>";
@@ -118,4 +115,3 @@ echo "</table></body></html>";
 fclose($file);
 
 ?>
-
