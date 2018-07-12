@@ -119,8 +119,6 @@
 
         $login = login($datos);
 
-        return json_encode($login);
-
         if ($login['code']=="0")
         {
             $respuesta['datos'] = consultar($datos['idregistro']);
@@ -190,22 +188,8 @@
         "encoded",
         "Propociona los registros de una tabla buscando por nombre");
 
-<<<<<<< HEAD:webservices/server.php
-    //$server->configureWSDL("registros", "urn:registros");
-    $server->register("consultarNombre",
-        array("datos" => "xsd:string"),
-        array("return" => "xsd:string"),
-        "urn:registros",
-        "urn:registros#consultarNombre",
-        "rpc",
-        "encoded",
-        "Consulta el Nombre");
-
-
-=======
     // $server->service($HTTP_RAW_POST_DATA);
 if ( !isset( $HTTP_RAW_POST_DATA ) )
         $HTTP_RAW_POST_DATA =file_get_contents( 'php://input' );
->>>>>>> d75763cf10e8f521f27e890c1502d2a43006bfa1:eniek/server.php
     $server->service($HTTP_RAW_POST_DATA);
 ?>
