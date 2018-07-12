@@ -1,0 +1,3 @@
+2	121323	archivos/83.png
+3	eniek	archivos/83.png
+4	chayo	archivos/12.png

@@ -67,10 +67,10 @@ function set_cookie(){
 
 	setcookie("archivo", serialize(array('file' => "persona.txt")), ((time() + 3600) *24) * 15 );
 
-	setcookie("registro", json_encode($registros), ((time() + 3600) *24) * 15 );
+	setcookie("registro", serialize($registros), ((time() + 3600) *24) * 15 );
 
 	echo "cookie generada<br>";
-	// exit;
+	//exit;
 }
 
 
