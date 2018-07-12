@@ -1,29 +1,33 @@
 <?php
     include("nusoap.php");
 
-    $cliente = new nusoap_client("http://www.tecnologiasdealtamira.com/edu/server.php");
+    $cliente = new nusoap_client("https://tecnologiasdealtamira.com/edu/server.php?wsdl",'wsdl');
       
     $error = $cliente->getError();
-    if ($error) {
-        echo "<h2>Constructor error</h2><pre>" . $error . "</pre>";
+    if ($error) 
+    {
+        echo "<strong>Error desde la apertura</strong>".$error;
     }
       
-    $result = $cliente->call("getProd", array("categoria" => "libros"));
+    $datos = array(
+        'username' => 'admin',
+        'password' => '9542931e640c671a60ea44a954b249c179da12391',
+        'idregistro' => 6
+    );
+    $result = $cliente->call("obtenerRegistros", array("datos" => json_encode($datos)));
       
     if ($cliente->fault) {
-        echo "<h2>Fault</h2><pre>";
-        print_r($result);
-        echo "</pre>";
+        echo "Fault: ";
+        echo $result;
     }
     else {
         $error = $cliente->getError();
         if ($error) {
-            echo "<h2>Error</h2><pre>" . $error . "</pre>";
+            echo "Error ".$error;
         }
         else {
-            echo "<h2>Libros</h2><pre>";
+            echo "Resultado de Consulta: <br/>";
             echo $result;
-            echo "</pre>";
         }
     }
 ?>
