@@ -105,7 +105,9 @@
     }
       
     $server = new soap_server();
+
     $server->configureWSDL("registros", "urn:registros");
+    
     $server->register("obtenerRegistros",
         array("datos" => "xsd:string"),
         array("return" => "xsd:string"),
