@@ -11,10 +11,12 @@
       
     $datos = array(
         'username' => 'admin',
-        'password' => '9542931e640c671a60ea44a954b249c179da12391',
+        'password' => '9542931e640c671a60ea44a954b249c179da1239',
         'idregistro' => 6
     );
     $result = $cliente->call("obtenerRegistros", array("datos" => json_encode($datos)));
+
+    //$result = $cliente->call("consultarNombre", array("datos" => "Oscar"));
       
     if ($cliente->fault) {
         echo "Fault: ";

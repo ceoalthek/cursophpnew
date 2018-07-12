@@ -82,6 +82,8 @@
 
         $login = login($datos);
 
+        return json_encode($login);
+
         if ($login['code']=="0")
         {
             $respuesta['datos'] = consultar($datos['idregistro']);
@@ -103,6 +105,11 @@
 
         return json_encode($respuesta);            
     }
+
+    function consultarNombre($datos)
+    {
+        return json_encode($datos);
+    }
       
     $server = new soap_server();
     $server->configureWSDL("registros", "urn:registros");
@@ -114,6 +121,17 @@
         "rpc",
         "encoded",
         "Propociona los registros de una tabla");
+
+    //$server->configureWSDL("registros", "urn:registros");
+    $server->register("consultarNombre",
+        array("datos" => "xsd:string"),
+        array("return" => "xsd:string"),
+        "urn:registros",
+        "urn:registros#consultarNombre",
+        "rpc",
+        "encoded",
+        "Consulta el Nombre");
+
 
     $server->service($HTTP_RAW_POST_DATA);
 
