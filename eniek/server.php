@@ -4,7 +4,7 @@
     function conectar()
     {
         try{
-            $s = new PDO('mysql:host=127.0.0.1;dbname=wwwtecde_tests', "wwwtecde_tests", "qf2=p(u(v=Hf",array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
+            $s = new PDO('mysql:host=127.0.0.1;dbname=nombres', "root", "",array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
             return $s;
         }catch(PDOException $e) {
             echo 'Falló la Conexión: '.$e->getMessage();
@@ -43,7 +43,7 @@
         $conn = conectar();
         
         try{
-            $query = sprintf("SELECT * FROM registros WHERE idregistros=%d LIMIT 1",(int)$id);
+            $query = sprintf("SELECT * FROM datos WHERE id=%d LIMIT 1",(int)$id);
             $result = $conn->query($query);
             if ($result->rowCount() > 0)
             {
@@ -51,10 +51,10 @@
                 {
                     $aux['datos'] = array(
                         'nombre'=>$row['nombre'],
-                        'apePat'=>$row['apePat'],
-                        'apeMat'=>$row['apeMat'],
-                        'domicilio'=>$row['domicilio'],
-                        'genero'=>$row['genero']
+                        'apePat'=>$row['paterno'],
+                        'apeMat'=>$row['materno'],
+                        // 'domicilio'=>$row['domicilio'],
+                        // 'genero'=>$row['genero']
                     );
                 }
                 $aux['error'] = ""; //Mensaje de Error
@@ -64,6 +64,43 @@
             {
                 $aux['datos'] = "";
                 $aux['error'] = "¡No hay registro con ese ID!"; 
+                $aux['code'] = "-1";                
+            }
+        }catch(PDOException $e) {
+            $aux['datos'] = "";
+            $aux['error'] = $e->getMessage(); //Mensaje de Error en la Consulta
+            $aux['code'] = "-2"; //Error de Consulta            
+        }
+
+        return $aux;
+        $conn = null; //Para cerrar la conexión a la base de datos.        
+    }
+  function consultar_nombre($name)
+    {
+        $conn = conectar();
+        
+        try{
+            $query = sprintf("SELECT * FROM datos WHERE nombre like '%d'",(int)$name);
+            $result = $conn->query($query);
+            if ($result->rowCount() > 0)
+            {
+                while($row = $result->fetch())
+                {
+                    $aux['datos'] = array(
+                        'nombre'=>$row['nombre'],
+                        'apePat'=>$row['paterno'],
+                        'apeMat'=>$row['materno'],
+                        // 'domicilio'=>$row['domicilio'],
+                        // 'genero'=>$row['genero']
+                    );
+                }
+                $aux['error'] = ""; //Mensaje de Error
+                $aux['code'] = "0"; //Código de Exito
+            }
+            else
+            {
+                $aux['datos'] = "";
+                $aux['error'] = "¡No hay registro con ese nombre"; 
                 $aux['code'] = "-1";                
             }
         }catch(PDOException $e) {
@@ -106,9 +143,32 @@
         return json_encode($respuesta);            
     }
 
-    function consultarNombre($datos)
+    function obtienexname($datos) 
     {
-        return json_encode($datos);
+        $datos = json_decode($datos,TRUE);
+
+        $login = login($datos);
+
+        if ($login['code']=="0")
+        {
+            $respuesta['datos'] = consultar_nombre($datos['nombre']);
+            $respuesta['codigo'] = "0";
+            $respuesta['mensaje'] = "";
+        }
+        else if ($login['code']=="-1")
+        {
+            $respuesta['datos'] = "";
+            $respuesta['codigo'] = "-1";
+            $respuesta['mensaje'] = $login['error'];
+        }
+        else if ($login['code']=="-2")
+        {
+            $respuesta['datos'] = "";
+            $respuesta['codigo'] = "-2";
+            $respuesta['mensaje'] = $login['error'];            
+        }
+
+        return json_encode($respuesta);            
     }
       
     $server = new soap_server();
@@ -121,7 +181,16 @@
         "rpc",
         "encoded",
         "Propociona los registros de una tabla");
+    $server->register("obtienexname",
+        array("datos" => "xsd:string"),
+        array("return" => "xsd:string"),
+        "urn:registros",
+        "urn:registros#obtienexname",
+        "rpc",
+        "encoded",
+        "Propociona los registros de una tabla buscando por nombre");
 
+<<<<<<< HEAD:webservices/server.php
     //$server->configureWSDL("registros", "urn:registros");
     $server->register("consultarNombre",
         array("datos" => "xsd:string"),
@@ -133,6 +202,10 @@
         "Consulta el Nombre");
 
 
+=======
+    // $server->service($HTTP_RAW_POST_DATA);
+if ( !isset( $HTTP_RAW_POST_DATA ) )
+        $HTTP_RAW_POST_DATA =file_get_contents( 'php://input' );
+>>>>>>> d75763cf10e8f521f27e890c1502d2a43006bfa1:eniek/server.php
     $server->service($HTTP_RAW_POST_DATA);
-
 ?>
