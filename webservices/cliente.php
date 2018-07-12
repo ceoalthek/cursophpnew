@@ -16,7 +16,7 @@
     );
     $result = $cliente->call("obtenerRegistros", array("datos" => json_encode($datos)));
 
-    //$result = $cliente->call("consultarNombre", array("datos" => "Oscar"));
+    $result = $cliente->call("consultarNombre", array("datos" => "Oscar"));
       
     if ($cliente->fault) {
         echo "Fault: ";
