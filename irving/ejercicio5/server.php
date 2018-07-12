@@ -113,7 +113,7 @@
         array("return" => "xsd:string"),
         "urn:registros",
         "urn:registros#obtenerRegistros",
-        "rpc",
+        "rpc",//
         "encoded",
         "Propociona los registros de una tabla");
 
