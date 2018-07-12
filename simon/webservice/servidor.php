@@ -66,6 +66,7 @@ function conectar_local()
         $paterno = $datos['paterno'];
         $materno = $datos['materno'];
         try{
+            
             // $aux['error'] = ""
             $query = "INSERT INTO nombre (nombre,paterno,materno) values('$nombre','$paterno','$materno')";
             $result = $conn->query($query);
