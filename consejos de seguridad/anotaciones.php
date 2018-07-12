@@ -37,6 +37,7 @@ $_SESSION['HTTP_USER_AGENT'] = $_SERVER['HTTP_USER_AGENT']; //Explorador de Inte
 http://www.e-commerce.com/index.ptp?idproducto=15 Dirija a un 404 si yo edito la URL
 
 ===============================================
+
 EJERCICIO
 - Formulario de Login (username, password)
 - Hash (md5 o sha1) de ambos fields
