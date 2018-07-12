@@ -11,16 +11,11 @@
       
     $datos = array(
         'username' => 'admin',
-        'password' => '9542931e640c671a60ea44a954b249c179da1239',
-        'idregistro' => 1
+        'password' => '9542931e640c671a60ea44a954b249c179da12391',
+        'idregistro' => 6
     );
     $result = $cliente->call("obtenerRegistros", array("datos" => json_encode($datos)));
       
-    //$xml = new SimpleXMLElement($result);
-
-    var_dump($result);
-    exit;
-
     if ($cliente->fault) {
         echo "Fault: ";
         echo $result;
@@ -33,8 +28,6 @@
         else {
             echo "Resultado de Consulta: <br/>";
             echo $result;
-
-
         }
     }
 ?>

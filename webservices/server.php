@@ -100,16 +100,12 @@
             $respuesta['codigo'] = "-2";
             $respuesta['mensaje'] = $login['error'];            
         }
-        
+
         return json_encode($respuesta);            
     }
       
     $server = new soap_server();
-    $server->register("obtenerRegistros");
-
-    $server = new soap_server();
     $server->configureWSDL("registros", "urn:registros");
-      
     $server->register("obtenerRegistros",
         array("datos" => "xsd:string"),
         array("return" => "xsd:string"),
