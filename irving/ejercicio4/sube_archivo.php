@@ -27,21 +27,21 @@
 			// Conexión a la base de datos
 			$connect = new PDO('mysql:host=localhost;dbname=ejercicio2', 'root', '');
 		    $connect ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-		    try{
-			    // Sacar un resultado
-			    $sql = $connect->prepare('INSERT INTO captura (nombre, imagen) VALUES (?, ?)');
-			    $connect->beginTransaction();
-			    $sql->execute( array( $_POST['nombre'], $fichero));
-			    $connect->commit();
-			    return true;
-			} catch (Exception $e){
-				$connect->rollBack();
-  				exit("Failed: " . $e->getMessage());
-  				return false;
-			}
-		} catch (Exception $e) {
+		} catch (PDOException $e) {
 			exit("Unable to connect: " . $e->getMessage());
+		}
+
+		try{
+		    // Sacar un resultado
+		    $sql = $connect->prepare('INSERT INTO captura (nombre, imagen) VALUES (?, ?)');
+		    $connect->beginTransaction();
+		    $sql->execute( array( $_POST['nombre'], $fichero));
+		    $connect->commit();
+		    return true;
+		} catch (PDOException $e){
+			$connect->rollBack();
+			die("Failed: " . $e->getMessage());
+			return false;
 		}
 	}
 ?>

@@ -5,7 +5,12 @@
 			// Conexión a la base de datos
 			$connect = new PDO('mysql:host=localhost;dbname=ejercicio2', 'root', '');
 		    $connect ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-					    
+			
+		} catch (PDOException $e) {
+			exit("Unable to connect: " . $e->getMessage());
+		}
+
+		try {	    
 	    	// Sacar todos los resultados de la base de datos
 		    $sql = $connect->prepare('SELECT * FROM captura');
 		    $sql->execute();
@@ -32,7 +37,7 @@
 			echo "</table></body></html>";
 						
 			fclose($file);
-		} catch (Exception $e) {
+		} catch (PDOException $e) {
 			exit("Unable to connect: " . $e->getMessage());
 		}
 	}
