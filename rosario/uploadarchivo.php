@@ -114,7 +114,7 @@ while($f = $res->fetch_object()){
  
 }
 
-echo "<div><img src='http://localhost/cursophp/". basename($_FILES['archivo']['name']) ."' /></div>";
+	echo "<div><img src='http://localhost/cursophp/". basename($_FILES['archivo']['name']) ."' /></div>";
 
  	echo "<br>";
 	echo "\n";

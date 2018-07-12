@@ -33,7 +33,7 @@ function llenar_file(){
         $resultado = $mysqli->query($sql);
         echo "<table border='1'><tr><td> NOMBRE</td> <td> APELLIDO</td> <td> IMAGEN SUBIDA</td></tr>";
         while($f = $resultado->fetch_object()){
-                echo "<tr><td>";
+            echo "<tr><td>";
             echo $f->nombre.' </td> <td>' .  $f->apellido .' </td> <td>' .  $f->imagen_name ;
             echo "</td></tr>";
             fwrite($file, chr(9). $f->nombre);
